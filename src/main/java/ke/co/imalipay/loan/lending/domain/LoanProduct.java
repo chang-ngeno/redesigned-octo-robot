@@ -21,7 +21,7 @@ public class LoanProduct {
     private Long id;
 
     private String loanType;
-    private BigDecimal repaymentPeriod;
+    private BigDecimal tenure;
     private BigDecimal loanAmount;
     private Double interestRate;
 
@@ -30,7 +30,7 @@ public class LoanProduct {
         return "LoanProduct{" +
                 "id=" + id +
                 ", loanType='" + loanType + '\'' +
-                ", repaymentPeriod=" + repaymentPeriod +
+                ", tenure=" + tenure +
                 ", loanAmount=" + loanAmount +
                 ", interestRate=" + interestRate +
                 '}';
