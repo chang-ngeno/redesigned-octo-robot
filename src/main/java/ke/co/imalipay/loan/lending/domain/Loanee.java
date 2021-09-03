@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Loanee {
 
     @Id

@@ -45,22 +45,26 @@ public class LoanRequest {
     public List<LoanProduct> getLoanOffer(Long loaneeDtlsId) {
         Loanee loanee;
         List<LoanProduct> loanProducts = loanProductRepository.findAll();
+        List<LoanProduct> loanProductsQualified = null;
         BigDecimal maxLoanAmt;
+
+        // TODO: fix the algorithm for small products
         if (loaneeDtlsId.longValue() != 0L) {
             loanee = loaneeRepository.findById(loaneeDtlsId).get();
             if (loanee != null) {
                 maxLoanAmt = loanee.getMaxCredit();
                 for (int i = 0; i < loanProducts.size(); i++) {
                     if(maxLoanAmt.compareTo(loanProducts.get(i).getLoanAmount())<0){
-                        loanProducts.get(i).setLoanAmount(maxLoanAmt);
-                        break;
+                        loanProductsQualified.add(loanProducts.get(i));
                     }
                 }
+                loanProducts = loanProductsQualified;
             }else
                 loanProducts=null;
         }else{
             loanProducts = null;
         }
+
         return loanProducts;
     }
 
