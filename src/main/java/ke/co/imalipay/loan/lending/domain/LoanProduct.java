@@ -1,9 +1,6 @@
 package ke.co.imalipay.loan.lending.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,15 +11,23 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class LoanProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loan_product_id", nullable = false)
     private Long id;
 
+    @NonNull
     private String loanType;
-    private BigDecimal tenure;
+
+    @NonNull
+    private double tenure;
+
+    @NonNull
     private BigDecimal loanAmount;
+
+    @NonNull
     private Double interestRate;
 
     @Override
