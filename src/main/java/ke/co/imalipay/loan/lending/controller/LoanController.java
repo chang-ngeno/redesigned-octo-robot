@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/loan")
+@RequestMapping(path="/api/loan",produces = {"application/json"}, consumes = {"application/json"})
 public class LoanController {
 
     Logger LOGGER = LoggerFactory.getLogger(LoanController.class);
@@ -25,17 +25,18 @@ public class LoanController {
         this.loanRequest = loanRequest;
     }
 
-    @GetMapping()
-    public String testEndPoint(){
-        return "Successful!";
+    @GetMapping(path = "/loan-products")
+    public List<LoanProduct> testEndPoint(){
+        return loanRequest.loanProductList();
     }
 
     @GetMapping("/{id}/request")
     public List<LoanProduct> requestLoan(@PathVariable("id") String loaneeDtlsId){
         LOGGER.info("Entry :: Loan Controller :: requestLoan() ;; loaneeDtlsId="+loaneeDtlsId);
         List<LoanProduct> loanProducts = null;
+        long loaneeId = Long.valueOf(loaneeDtlsId);
         try{
-            loanProducts = loanRequest.getLoanOffer(Long.getLong(loaneeDtlsId));
+            loanProducts = loanRequest.getLoanOffer(loaneeId);
         }catch (Exception e){
             LOGGER.error("Error occurred ;; user given is "+ e.getMessage());
         }
