@@ -5,7 +5,11 @@ more loan offers based on the customer loan maximum qualification. From the offe
 presented, a customer can choose and accept one of the offers. When a customer accepts
 an offer then we will credit his mobile wallet.
 
-### Assumptions
+## API documentation
+The endpoints documentation are available on:
+> http://{host:port}/swagger-ui.html
+
+## Assumptions
 
 1. Users/clients and loan products already exist.
 2. End points for modifications of the users/clients and the loan products already exist.
